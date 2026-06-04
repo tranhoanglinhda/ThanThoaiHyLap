@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pantheon — 17 Greek Deities in 3D</title>
+<style>
+  :root {
+    --bg: #0c0e16;
+    --ink: #f4f1e8;
+    --muted: #9aa3b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); }
+  body { font-family: 'Georgia', 'Times New Roman', serif; }
+  #scene { position: fixed; inset: 0; display: block; cursor: grab; }
+  #scene:active { cursor: grabbing; }
+
+  /* --- Title overlay --- */
+  .titlebar {
+    position: fixed; top: 28px; left: 0; right: 0; text-align: center;
+    pointer-events: none; transition: opacity .5s; z-index: 5;
+  }
+  body.focused .titlebar { opacity: 0; }
+  .titlebar .eyebrow {
+    font-size: 12px; letter-spacing: .42em; text-transform: uppercase;
+    color: var(--muted); font-family: 'Helvetica Neue', sans-serif;
+  }
+  .titlebar h1 {
+    margin: 6px 0 0; font-size: 40px; font-weight: 400; letter-spacing: .04em;
+  }
+  .titlebar .sub { margin-top: 6px; font-size: 14px; color: var(--muted); font-style: italic; }
+
+  /* --- Legend chips --- */
+  #legend {
+    position: fixed; left: 0; right: 0; bottom: 22px; z-index: 5;
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    padding: 0 24px; transition: opacity .5s;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  body.focused #legend { opacity: 0; pointer-events: none; }
+  .chip {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--c);
+    color: var(--ink); padding: 6px 13px; border-radius: 999px;
+    font-size: 12.5px; letter-spacing: .03em; cursor: pointer;
+    transition: all .2s; backdrop-filter: blur(6px);
+  }
+  .chip::before {
+    content: ''; display: inline-block; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--c); margin-right: 7px; vertical-align: middle;
+  }
+  .chip:hover { background: var(--c); color: #0c0e16; transform: translateY(-2px); }
+
+  .hint {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    color: var(--muted); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif; pointer-events: none;
+    opacity: 0; animation: fade 5s ease 1.5s forwards;
+  }
+  @keyframes fade { 0%{opacity:0} 18%{opacity:.7} 80%{opacity:.7} 100%{opacity:0} }
+
+  /* --- Detail panel --- */
+  #panel {
+    position: fixed; top: 0; right: 0; height: 100%; width: 380px; max-width: 86vw;
+    background: linear-gradient(200deg, rgba(18,21,33,.96), rgba(10,12,20,.98));
+    border-left: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px); z-index: 10;
+    transform: translateX(105%); transition: transform .55s cubic-bezier(.5,0,.2,1);
+    padding: 64px 40px; overflow-y: auto;
+  }
+  #panel.show { transform: translateX(0); }
+  #panel .gen {
+    font-size: 12px; letter-spacing: .35em; text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  #panel .greek { font-size: 30px; margin-top: 18px; opacity: .55; }
+  #panel h1 { margin: 2px 0 0; font-size: 58px; font-weight: 400; letter-spacing: .02em; }
+  #panel .domain {
+    margin-top: 8px; font-style: italic; color: var(--muted); font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 22px;
+  }
+  #panel p { line-height: 1.7; font-size: 16px; color: #d8d4c8; margin: 24px 0; }
+  #panel .symbols { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 38px; }
+  #panel .symbols span {
+    font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: .04em;
+    border: 1px solid; padding: 5px 12px; border-radius: 999px;
+  }
+  #panel .nav { display: flex; flex-wrap: wrap; gap: 10px; }
+  #panel button {
+    font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+    background: rgba(255,255,255,0.05); color: var(--ink);
+    border: 1px solid rgba(255,255,255,0.15); padding: 11px 16px;
+    border-radius: 8px; cursor: pointer; transition: all .2s;
+  }
+  #panel button:hover { background: var(--accent); color: #0c0e16; border-color: var(--accent); }
+  #panel #back { width: 100%; margin-top: 4px; }
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div class="titlebar">
+    <div class="eyebrow">Greek Mythology</div>
+    <h1>The Pantheon</h1>
+    <div class="sub">Five primordials · two Titans · the Twelve Olympians</div>
+  </div>
+
+  <div class="hint">Drag to orbit · Click a statue to focus</div>
+  <div id="legend"></div>
+  <div id="panel"></div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

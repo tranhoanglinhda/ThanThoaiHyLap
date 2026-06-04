@@ -1,0 +1,260 @@
+/* ===========================================================================
+   PANTHEON DATA — Greek Mythology
+   Single source of truth for the gallery, the family tree, and the
+   Claude Code handoff. Bilingual (vi / en). Relationships are by `id`.
+   `generation` drives the family-tree tier layout (0 = oldest).
+   `model` is the slot path a real .glb/.gltf gets dropped into later.
+   =========================================================================== */
+window.PANTHEON = [
+  /* ---- PRIMORDIAL (Thần nguyên thủy) ---- */
+  {
+    id: "chaos", name: "Chaos", roman: "—", group: "primordial", generation: 0,
+    accent: "#6b7a8f",
+    epithet: { vi: "Hư Không nguyên thủy", en: "The Primordial Void" },
+    domain: { vi: "Khoảng không hỗn mang khởi nguyên", en: "The yawning emptiness at the beginning" },
+    symbol: { vi: "Bóng tối, khoảng không", en: "Darkness, the abyss" },
+    desc: {
+      vi: "Khởi đầu của vạn vật. Từ Chaos — khoảng không vô tận — sinh ra Đất (Gaia), Bóng tối (Erebus) và Đêm (Nyx). Không có hình hài, Chaos là trạng thái trước cả trật tự.",
+      en: "The very beginning of all things. From Chaos — a boundless void — came forth Earth (Gaia), Darkness (Erebus) and Night (Nyx). Formless, it is the state that precedes all order."
+    },
+    parents: [], consorts: [], children: ["gaia"], model: "models/chaos.glb"
+  },
+  {
+    id: "gaia", name: "Gaia", roman: "Terra", group: "primordial", generation: 1,
+    accent: "#7d8a4f",
+    epithet: { vi: "Đất Mẹ", en: "Mother Earth" },
+    domain: { vi: "Đất đai, sự sống, sinh sôi", en: "The Earth, life, fertility" },
+    symbol: { vi: "Đất, mùa màng, rắn", en: "Soil, harvest, the serpent" },
+    desc: {
+      vi: "Hiện thân của Đất, mẹ của muôn loài. Gaia tự sinh ra Bầu Trời (Uranus) rồi cùng ông tạo nên các Titan. Bà là cội nguồn của cả dòng dõi thần linh Hy Lạp.",
+      en: "The personification of Earth, mother of all. Gaia bore the Sky (Uranus) and with him created the Titans. She is the root of the entire Greek divine lineage."
+    },
+    parents: ["chaos"], consorts: ["uranus"], children: ["uranus", "cronus", "rhea", "oceanus", "hyperion"], model: "models/gaia.glb"
+  },
+  {
+    id: "uranus", name: "Uranus", roman: "Caelus", group: "primordial", generation: 1,
+    accent: "#4a6c8f",
+    epithet: { vi: "Bầu Trời", en: "Father Sky" },
+    domain: { vi: "Bầu trời, các vì sao", en: "The heavens, the stars" },
+    symbol: { vi: "Vòm trời đầy sao", en: "The starry vault of heaven" },
+    desc: {
+      vi: "Hiện thân của Bầu Trời, vừa là con vừa là chồng của Gaia. Ông cai trị vũ trụ buổi sơ khai cho đến khi bị con trai mình — Cronus — lật đổ, mở đầu cho cuộc kế vị đẫm máu của các thế hệ thần.",
+      en: "The personification of the Sky, both son and husband of Gaia. He ruled the early cosmos until overthrown by his son Cronus — the first of the violent successions between divine generations."
+    },
+    parents: ["gaia"], consorts: ["gaia"], children: ["cronus", "rhea", "oceanus", "hyperion"], model: "models/uranus.glb"
+  },
+
+  /* ---- TITANS (Các Titan) ---- */
+  {
+    id: "cronus", name: "Cronus", roman: "Saturn", group: "titan", generation: 2,
+    accent: "#8a6a3f",
+    epithet: { vi: "Vua các Titan", en: "King of the Titans" },
+    domain: { vi: "Thời gian, mùa màng, kỷ nguyên", en: "Time, harvest, the ages" },
+    symbol: { vi: "Lưỡi hái", en: "The sickle / scythe" },
+    desc: {
+      vi: "Titan trẻ nhất, lật đổ cha Uranus để lên ngôi và mở ra 'Thời Hoàng Kim'. Vì lời tiên tri sẽ bị con lật đổ, ông nuốt từng đứa con — cho đến khi Zeus thoát và đánh bại ông.",
+      en: "The youngest Titan, who overthrew his father Uranus and opened the 'Golden Age'. Fearing a prophecy that his children would dethrone him, he swallowed each one — until Zeus escaped and defeated him."
+    },
+    parents: ["gaia", "uranus"], consorts: ["rhea"], children: ["zeus", "hera", "poseidon", "hades", "demeter", "hestia"], model: "models/cronus.glb"
+  },
+  {
+    id: "rhea", name: "Rhea", roman: "Ops", group: "titan", generation: 2,
+    accent: "#9a7b6f",
+    epithet: { vi: "Mẹ của các vị thần", en: "Mother of the Gods" },
+    domain: { vi: "Sự sinh sản, dòng dõi", en: "Motherhood, generation" },
+    symbol: { vi: "Sư tử, ngai vàng", en: "Lions, the throne" },
+    desc: {
+      vi: "Titan, vợ của Cronus và mẹ của sáu vị thần Olympus đầu tiên. Bà cứu Zeus bằng cách giấu ông đi và lừa Cronus nuốt một hòn đá bọc tã thay con.",
+      en: "A Titan, wife of Cronus and mother of the first six Olympians. She saved Zeus by hiding him away and tricking Cronus into swallowing a swaddled stone instead."
+    },
+    parents: ["gaia", "uranus"], consorts: ["cronus"], children: ["zeus", "hera", "poseidon", "hades", "demeter", "hestia"], model: "models/rhea.glb"
+  },
+
+  /* ---- OLYMPIANS (12 vị thần Olympus) + Hades & Persephone ---- */
+  {
+    id: "zeus", name: "Zeus", roman: "Jupiter", group: "olympian", generation: 3,
+    accent: "#d9a441",
+    epithet: { vi: "Vua của các vị thần", en: "King of the Gods" },
+    domain: { vi: "Bầu trời, sấm sét, vương quyền", en: "Sky, thunder, kingship" },
+    symbol: { vi: "Tia sét, đại bàng, cây sồi", en: "Thunderbolt, eagle, oak" },
+    desc: {
+      vi: "Vua của đỉnh Olympus, người cai quản bầu trời và sấm sét. Sau khi đánh bại các Titan, Zeus chia thế giới với hai anh em và trở thành phán quan tối cao của thần lẫn người.",
+      en: "King of Olympus, ruler of sky and thunder. After defeating the Titans, Zeus divided the world with his brothers and became supreme arbiter of gods and mortals alike."
+    },
+    parents: ["cronus", "rhea"], consorts: ["hera"], children: ["ares", "hephaestus", "athena", "apollo", "artemis", "hermes", "dionysus", "persephone"], model: "models/zeus.glb"
+  },
+  {
+    id: "hera", name: "Hera", roman: "Juno", group: "olympian", generation: 3,
+    accent: "#9c4f6a",
+    epithet: { vi: "Nữ hoàng của các vị thần", en: "Queen of the Gods" },
+    domain: { vi: "Hôn nhân, gia đình, người vợ", en: "Marriage, family, womanhood" },
+    symbol: { vi: "Công, bò cái, vương miện", en: "Peacock, cow, diadem" },
+    desc: {
+      vi: "Vợ và là chị của Zeus, nữ hoàng đỉnh Olympus, bảo trợ cho hôn nhân. Nổi tiếng với lòng ghen tuông trước những cuộc tình của Zeus, bà trừng phạt không thương tiếc những người tình của chồng.",
+      en: "Wife and sister of Zeus, queen of Olympus, protector of marriage. Famous for her jealousy of Zeus's affairs, she punished his lovers without mercy."
+    },
+    parents: ["cronus", "rhea"], consorts: ["zeus"], children: ["ares", "hephaestus"], model: "models/hera.glb"
+  },
+  {
+    id: "poseidon", name: "Poseidon", roman: "Neptune", group: "olympian", generation: 3,
+    accent: "#2f7d8a",
+    epithet: { vi: "Chúa tể Biển cả", en: "Lord of the Sea" },
+    domain: { vi: "Biển, động đất, ngựa", en: "The sea, earthquakes, horses" },
+    symbol: { vi: "Đinh ba, cá heo, ngựa", en: "Trident, dolphin, horse" },
+    desc: {
+      vi: "Anh của Zeus, vị thần cai quản biển khơi với cây đinh ba có thể gây bão và động đất. Tính khí thất thường của ông là nỗi sợ của mọi thủy thủ Hy Lạp.",
+      en: "Brother of Zeus, god of the sea, wielding a trident that stirs storms and earthquakes. His volatile temper was dreaded by every Greek sailor."
+    },
+    parents: ["cronus", "rhea"], consorts: [], children: [], model: "models/poseidon.glb"
+  },
+  {
+    id: "demeter", name: "Demeter", roman: "Ceres", group: "olympian", generation: 3,
+    accent: "#b39530",
+    epithet: { vi: "Nữ thần Mùa màng", en: "Goddess of the Harvest" },
+    domain: { vi: "Nông nghiệp, ngũ cốc, sự phồn thực", en: "Agriculture, grain, fertility" },
+    symbol: { vi: "Bó lúa, đuốc, lợn nái", en: "Sheaf of wheat, torch, sow" },
+    desc: {
+      vi: "Chị của Zeus, nữ thần ban cho con người mùa màng. Khi con gái Persephone bị Hades bắt xuống Âm phủ, nỗi đau của bà tạo nên mùa đông — khởi nguồn cho các mùa trong năm.",
+      en: "Sister of Zeus, the goddess who gives humankind the harvest. When her daughter Persephone was taken to the Underworld, her grief created winter — the origin of the seasons."
+    },
+    parents: ["cronus", "rhea"], consorts: ["zeus"], children: ["persephone"], model: "models/demeter.glb"
+  },
+  {
+    id: "hestia", name: "Hestia", roman: "Vesta", group: "olympian", generation: 3,
+    accent: "#c08552",
+    epithet: { vi: "Nữ thần Bếp lửa", en: "Goddess of the Hearth" },
+    domain: { vi: "Bếp lửa, gia đình, nhà nước", en: "The hearth, home, the state" },
+    symbol: { vi: "Ngọn lửa thiêng", en: "The sacred flame" },
+    desc: {
+      vi: "Chị cả của Zeus, nữ thần dịu dàng của bếp lửa và mái ấm. Bà nhường ghế trong hội đồng Olympus cho Dionysus để giữ ngọn lửa thiêng, biểu tượng cho sự bình yên của mỗi gia đình.",
+      en: "Eldest sister of Zeus, the gentle goddess of hearth and home. She gave up her Olympian throne to Dionysus to tend the sacred flame, symbol of every household's peace."
+    },
+    parents: ["cronus", "rhea"], consorts: [], children: [], model: "models/hestia.glb"
+  },
+  {
+    id: "athena", name: "Athena", roman: "Minerva", group: "olympian", generation: 4,
+    accent: "#8a8f9c",
+    epithet: { vi: "Nữ thần Trí tuệ", en: "Goddess of Wisdom" },
+    domain: { vi: "Trí tuệ, chiến lược, thủ công", en: "Wisdom, strategy, craft" },
+    symbol: { vi: "Cú mèo, cây ô liu, khiên Aegis", en: "Owl, olive tree, the Aegis" },
+    desc: {
+      vi: "Sinh ra trong bộ giáp đầy đủ từ chính đầu của Zeus. Nữ thần của trí tuệ và chiến tranh chính nghĩa, bảo trợ thành Athens và là hiện thân của lý trí thắng thế bạo lực.",
+      en: "Born fully armoured from the head of Zeus. Goddess of wisdom and just warfare, patron of Athens, and the embodiment of reason prevailing over brute force."
+    },
+    parents: ["zeus"], consorts: [], children: [], model: "models/athena.glb"
+  },
+  {
+    id: "apollo", name: "Apollo", roman: "Apollo", group: "olympian", generation: 4,
+    accent: "#d4a017",
+    epithet: { vi: "Thần Ánh sáng & Nghệ thuật", en: "God of Light & the Arts" },
+    domain: { vi: "Mặt trời, âm nhạc, tiên tri, y học", en: "Sun, music, prophecy, healing" },
+    symbol: { vi: "Đàn lia, cung tên, vòng nguyệt quế", en: "Lyre, bow, laurel wreath" },
+    desc: {
+      vi: "Con của Zeus và Leto, anh sinh đôi của Artemis. Thần của ánh sáng, âm nhạc và lời tiên tri tại đền Delphi — hiện thân lý tưởng Hy Lạp về vẻ đẹp và sự hài hòa.",
+      en: "Son of Zeus and Leto, twin of Artemis. God of light, music and the prophecies of Delphi — the Greek ideal of beauty and harmony made divine."
+    },
+    parents: ["zeus"], consorts: [], children: [], model: "models/apollo.glb"
+  },
+  {
+    id: "artemis", name: "Artemis", roman: "Diana", group: "olympian", generation: 4,
+    accent: "#5f8f7d",
+    epithet: { vi: "Nữ thần Săn bắn & Mặt trăng", en: "Goddess of the Hunt & Moon" },
+    domain: { vi: "Săn bắn, thú hoang, mặt trăng, trinh nữ", en: "The hunt, wildlife, the moon, maidens" },
+    symbol: { vi: "Cung bạc, hươu, mặt trăng lưỡi liềm", en: "Silver bow, deer, crescent moon" },
+    desc: {
+      vi: "Em sinh đôi của Apollo, nữ thần săn bắn hoang dã và là người bảo vệ trinh nữ cùng muông thú. Độc lập và quyết liệt, bà rong ruổi rừng sâu cùng đoàn tiên nữ.",
+      en: "Twin of Apollo, goddess of the wild hunt and protector of maidens and wild beasts. Fiercely independent, she roams the forests with her band of nymphs."
+    },
+    parents: ["zeus"], consorts: [], children: [], model: "models/artemis.glb"
+  },
+  {
+    id: "ares", name: "Ares", roman: "Mars", group: "olympian", generation: 4,
+    accent: "#a83f3f",
+    epithet: { vi: "Thần Chiến tranh", en: "God of War" },
+    domain: { vi: "Chiến tranh, bạo lực, lòng dũng cảm", en: "War, violence, raw courage" },
+    symbol: { vi: "Giáo, mũ giáp, kền kền", en: "Spear, helmet, vulture" },
+    desc: {
+      vi: "Con của Zeus và Hera, hiện thân của sự tàn khốc và hỗn loạn nơi chiến trận. Khác với Athena khôn ngoan, Ares đại diện cho cơn cuồng nộ đẫm máu — bị thần lẫn người e ngại.",
+      en: "Son of Zeus and Hera, embodiment of the brutality and chaos of battle. Unlike the strategic Athena, Ares stands for bloodlust and fury — feared by gods and mortals alike."
+    },
+    parents: ["zeus", "hera"], consorts: ["aphrodite"], children: [], model: "models/ares.glb"
+  },
+  {
+    id: "aphrodite", name: "Aphrodite", roman: "Venus", group: "olympian", generation: 4,
+    accent: "#c96f8f",
+    epithet: { vi: "Nữ thần Tình yêu & Sắc đẹp", en: "Goddess of Love & Beauty" },
+    domain: { vi: "Tình yêu, sắc đẹp, khát khao", en: "Love, beauty, desire" },
+    symbol: { vi: "Sò biển, bồ câu, hoa hồng", en: "Scallop shell, dove, rose" },
+    desc: {
+      vi: "Sinh ra từ bọt biển, nữ thần của tình yêu và sắc đẹp khiến cả thần lẫn người say đắm. Quyền năng khơi dậy khát khao của bà đã châm ngòi cho nhiều huyền thoại, trong đó có cuộc chiến thành Troy.",
+      en: "Born from sea foam, goddess of love and beauty who enthralls gods and mortals. Her power to awaken desire set countless myths in motion — including the Trojan War."
+    },
+    parents: ["uranus"], consorts: ["ares", "hephaestus"], children: [], model: "models/aphrodite.glb"
+  },
+  {
+    id: "hephaestus", name: "Hephaestus", roman: "Vulcan", group: "olympian", generation: 4,
+    accent: "#b5632f",
+    epithet: { vi: "Thần Rèn & Lửa", en: "God of the Forge & Fire" },
+    domain: { vi: "Rèn đúc, thủ công, núi lửa", en: "Smithing, craft, volcanoes" },
+    symbol: { vi: "Búa, đe, kìm thợ rèn", en: "Hammer, anvil, tongs" },
+    desc: {
+      vi: "Con của Hera, vị thần thợ rèn tài hoa nhưng khập khiễng. Từ lò rèn dưới núi lửa, ông tạo ra vũ khí và bảo vật cho các thần — minh chứng cho giá trị của kỹ năng và lao động.",
+      en: "Son of Hera, the brilliant but lame smith-god. From his forge beneath the volcanoes he crafted the weapons and treasures of the gods — a testament to skill and labour."
+    },
+    parents: ["hera"], consorts: ["aphrodite"], children: [], model: "models/hephaestus.glb"
+  },
+  {
+    id: "hermes", name: "Hermes", roman: "Mercury", group: "olympian", generation: 4,
+    accent: "#7a9a3f",
+    epithet: { vi: "Sứ giả của các vị thần", en: "Messenger of the Gods" },
+    domain: { vi: "Du hành, thương mại, trộm cắp, ranh giới", en: "Travel, trade, thievery, boundaries" },
+    symbol: { vi: "Gậy caduceus, dép có cánh, mũ cánh", en: "Caduceus, winged sandals, winged hat" },
+    desc: {
+      vi: "Con của Zeus, sứ giả nhanh nhẹn và tinh ranh, người duy nhất tự do đi lại giữa Olympus, trần gian và Âm phủ. Ông dẫn dắt linh hồn người chết và bảo trợ kẻ lữ hành, thương nhân.",
+      en: "Son of Zeus, the swift and cunning messenger, the only one free to move between Olympus, earth and the Underworld. He guides the souls of the dead and protects travellers and traders."
+    },
+    parents: ["zeus"], consorts: [], children: [], model: "models/hermes.glb"
+  },
+  {
+    id: "dionysus", name: "Dionysus", roman: "Bacchus", group: "olympian", generation: 4,
+    accent: "#6f3f7a",
+    epithet: { vi: "Thần Rượu nho & Lễ hội", en: "God of Wine & Revelry" },
+    domain: { vi: "Rượu nho, lễ hội, sân khấu, ngây ngất", en: "Wine, festivity, theatre, ecstasy" },
+    symbol: { vi: "Gậy thyrsus, nho, báo", en: "Thyrsus, grapevine, leopard" },
+    desc: {
+      vi: "Con của Zeus và một người phàm, vị thần Olympus trẻ nhất. Thần của rượu nho, sân khấu và những cơn ngây ngất — đại diện cho sức mạnh giải phóng lẫn hủy diệt của niềm vui hoang dại.",
+      en: "Son of Zeus and a mortal, the youngest Olympian. God of wine, theatre and ecstasy — representing both the liberating and destructive power of wild joy."
+    },
+    parents: ["zeus"], consorts: [], children: [], model: "models/dionysus.glb"
+  },
+  {
+    id: "hades", name: "Hades", roman: "Pluto", group: "olympian", generation: 3,
+    accent: "#5a5560",
+    epithet: { vi: "Chúa tể Âm phủ", en: "Lord of the Underworld" },
+    domain: { vi: "Cõi chết, của cải dưới lòng đất", en: "The dead, underground riches" },
+    symbol: { vi: "Mũ tàng hình, chó Cerberus, cây bách", en: "Helm of invisibility, Cerberus, cypress" },
+    desc: {
+      vi: "Anh của Zeus, vị thần cai quản cõi người chết. Tuy bị e sợ, Hades không phải hiện thân của cái ác mà là một phán quan công bằng và lạnh lùng của thế giới bên kia.",
+      en: "Brother of Zeus, ruler of the realm of the dead. Though feared, Hades is not evil but a stern and impartial judge of the world beyond."
+    },
+    parents: ["cronus", "rhea"], consorts: ["persephone"], children: [], model: "models/hades.glb"
+  },
+  {
+    id: "persephone", name: "Persephone", roman: "Proserpina", group: "olympian", generation: 4,
+    accent: "#8f5f9c",
+    epithet: { vi: "Nữ hoàng Âm phủ", en: "Queen of the Underworld" },
+    domain: { vi: "Âm phủ, mùa xuân, sự tái sinh", en: "The Underworld, spring, rebirth" },
+    symbol: { vi: "Hạt lựu, bó lúa, đuốc", en: "Pomegranate, sheaf of grain, torch" },
+    desc: {
+      vi: "Con gái của Demeter và Zeus, bị Hades bắt làm vợ. Mỗi năm bà ở Âm phủ một phần thời gian rồi trở lại mặt đất — chu kỳ giải thích cho sự luân chuyển của các mùa.",
+      en: "Daughter of Demeter and Zeus, taken by Hades to be his wife. Each year she spends part of her time in the Underworld and part above — the cycle that explains the turning of the seasons."
+    },
+    parents: ["zeus", "demeter"], consorts: ["hades"], children: [], model: "models/persephone.glb"
+  }
+];
+
+window.PANTHEON_GROUPS = {
+  primordial: { vi: "Thần Nguyên thủy", en: "Primordial Deities" },
+  titan: { vi: "Các Titan", en: "The Titans" },
+  olympian: { vi: "Các vị thần Olympus", en: "The Olympians" }
+};
